@@ -1,8 +1,8 @@
 class DCD
   attr_reader :metadata, :title, :frames
 
-	def initialize(io, lazy=false)
-		@io_pointer = io
+  def initialize(io, lazy=false)
+    @io_pointer = io
     @read_length = 0
     @type = ''
     @endian = ''
@@ -11,20 +11,20 @@ class DCD
     @frames = {}
     @valid = true
 
-		if !lazy
-			read_header
+    if !lazy
+      read_header
       read_atoms
-		end
-	end
+    end
+  end
 
   # Loads the header, which determines endianness
   # and the initial metadata about the DCD file
-	def read_header
+  def read_header
     determine_endianness
     gather_metadata
     read_title
     read_atoms_metadata
-	end
+  end
 
   def read_atoms
     @frames[:x], @frames[:y], @frames[:z], @frames[:w] = [], [], [], []
